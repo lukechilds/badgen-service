@@ -10,7 +10,11 @@ module.exports = async (topic, username) => {
       fields: 'public_keys'
     }
   })
-  const user = body.them[0]
+  const user = body.them ? body.them[0] : null
+
+  if (!user) {
+    topic = 'default'
+  }
 
   switch (topic) {
     case 'pgp':
